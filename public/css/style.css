@@ -1,0 +1,9 @@
+#my-forms div{
+    display: none;
+}
+
+#my-forms.f-size div[name=size],
+#my-forms.f-weight div[name=weight],
+#my-forms.f-dimensions div[name=dimensions] {
+    display: block;
+}
