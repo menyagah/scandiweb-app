@@ -35,6 +35,9 @@ abstract class Model
                 if ($ruleName === self::RULE_REQUIRED && !$value){
                     $this->addError($attribute, self::RULE_REQUIRED);
                 }
+                if ($ruleName === self::RULE_NUMERIC && !filter_var($value, FILTER_VALIDATE_INT)  ){
+                    $this->addError($attribute, self::RULE_NUMERIC);
+                }
             }
         }
         return empty($this->errors);
@@ -50,7 +53,7 @@ abstract class Model
     {
         return [
             self::RULE_REQUIRED => 'This field is required',
-            self::RULE_NUMERIC =>  'This fields needs to be a number'
+            self::RULE_NUMERIC =>  'This field needs to be a number'
 
         ];
     }

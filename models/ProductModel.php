@@ -32,35 +32,35 @@ class ProductModel extends Model
             return [
                 'sku' => [self::RULE_REQUIRED],
                 'name' => [self::RULE_REQUIRED],
-                'price' => [self::RULE_REQUIRED],
+                'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
                 'size' => [self::RULE_REQUIRED,  self::RULE_NUMERIC]
             ];
         } elseif (in_array("weight", $appData->getBody())){
             return [
                 'sku' => [self::RULE_REQUIRED],
                 'name' => [self::RULE_REQUIRED],
-                'price' => [self::RULE_REQUIRED],
-                'weight' => [self::RULE_REQUIRED]
+                'price' => [self::RULE_REQUIRED , self::RULE_NUMERIC],
+                'weight' => [self::RULE_REQUIRED, self::RULE_NUMERIC]
             ];
         }elseif (in_array("height" && "width" && "length",$appData->getBody())){
             return [
                 'sku' => [self::RULE_REQUIRED],
                 'name' => [self::RULE_REQUIRED],
-                'price' => [self::RULE_REQUIRED],
-                'height' => [self::RULE_REQUIRED],
-                'width' => [self::RULE_REQUIRED],
-                'length' => [self::RULE_REQUIRED]
+                'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
+                'height' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
+                'width' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
+                'length' => [self::RULE_REQUIRED, self::RULE_NUMERIC]
             ];
         }else{
             return  [
                 'sku' => [self::RULE_REQUIRED],
                 'name' => [self::RULE_REQUIRED],
-                'price' => [self::RULE_REQUIRED],
-                'size' => [self::RULE_REQUIRED],
-                'weight' => [self::RULE_REQUIRED],
-                'height' => [self::RULE_REQUIRED],
-                'width' => [self::RULE_REQUIRED],
-                'length' => [self::RULE_REQUIRED]
+                'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
+                'size' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
+                'weight' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
+                'height' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
+                'width' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
+                'length' => [self::RULE_REQUIRED, self::RULE_NUMERIC]
             ];
         }
 
