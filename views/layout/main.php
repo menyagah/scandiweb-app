@@ -17,9 +17,9 @@
 </head>
 <body>
 
-<div class="container">
+
     {{content}}
-</div>
+
 
 
 <!-- Option 1: Bootstrap Bundle with Popper -->

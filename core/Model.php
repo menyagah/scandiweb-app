@@ -35,7 +35,10 @@ abstract class Model
                 if ($ruleName === self::RULE_REQUIRED && !$value){
                     $this->addError($attribute, self::RULE_REQUIRED);
                 }
-                if ($ruleName === self::RULE_NUMERIC && !filter_var($value, FILTER_VALIDATE_INT)  ){
+                $filter_options = array(
+                    'options' => array( 'min_range' => 1)
+                );
+                if ($ruleName === self::RULE_NUMERIC && !filter_var($value, FILTER_VALIDATE_INT, $filter_options)  ){
                     $this->addError($attribute, self::RULE_NUMERIC);
                 }
             }
@@ -53,7 +56,7 @@ abstract class Model
     {
         return [
             self::RULE_REQUIRED => 'This field is required',
-            self::RULE_NUMERIC =>  'This field needs to be a number'
+            self::RULE_NUMERIC =>  'This field needs to be a number greater than 0'
 
         ];
     }
@@ -64,6 +67,7 @@ abstract class Model
     }
 
     public function getFirstError($attribute){
-        return $this->errors[$attribute][0] ?? false;
+        return $this->errors[$attribute][0]   ?? false;
     }
 }
+

@@ -10,14 +10,14 @@ use app\core\Request;
 class ProductModel extends Model
 {
 
-    public string $sku;
-    public string $name;
-    public string $price;
-    public ?string $size = null;
-    public ?string $weight = null;
-    public ?string $height = null;
-    public ?string $width = null;
-    public ?string $length = null;
+    public string $sku = '';
+    public string $name = '';
+    public string $price = '';
+    public ?string $size = '';
+    public ?string $weight = '';
+    public ?string $height = '';
+    public ?string $width = '';
+    public ?string $length = '';
 
 
     public function addProduct(){
