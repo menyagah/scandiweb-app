@@ -41,11 +41,11 @@ $form = Form::begin('', "post") ?>
     <div id="my-forms">
         <div name="size" id="size">
             <?php
-            echo $form->field($model, 'size') ?>
+            echo $form->field($model, 'Size (MB)') ?>
         </div>
         <div name="weight" id="weight">
             <?php
-            echo $form->field($model, 'weight') ?>
+            echo $form->field($model, 'Weight (KG)') ?>
         </div>
         <div name="dimensions" id="dimensions">
             <?php

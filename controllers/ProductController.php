@@ -23,10 +23,10 @@ class ProductController extends Controller
                 return 'Success';
 
             }
-            /*echo '<pre>';
+            echo '<pre>';
             var_dump($productModel->errors);
             echo '</pre>';
-            exit;*/
+            exit;
 
             return $this->render('createProduct', [
                 'model' => $productModel
