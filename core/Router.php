@@ -37,7 +37,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
             $this->response->setStatusCode(404);
-            return $this->renderView("_404");
+            return $this->renderView("_404.php");
         }
         if (is_string($callback)) {
             return $this->renderView($callback);
@@ -69,9 +69,7 @@ class Router
         $method = $this->request->method();
         $callback = $this->routes[$method][$path];
         ob_start();
-        /*echo '<pre>';
-        print_r($callback);
-        echo '</pre>';*/
+
 
 
         if ($callback[1] === 'createProduct') {

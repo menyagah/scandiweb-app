@@ -33,7 +33,7 @@ class Field
             </div>
         ',
             $this->attribute,
-            $this->attribute === 'sku ' || $this->attribute === 'name ' ? 'text' : 'number',
+            $this->attribute === 'sku' || $this->attribute === 'name' ? 'text' : 'number',
             $this->attribute = explode(' ',lcfirst( $this->attribute))[0],
             $this->model->{$this->attribute},
             $this->model->hasError($this->attribute) ? 'is-invalid' : '',
