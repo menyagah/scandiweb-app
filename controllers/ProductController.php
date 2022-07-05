@@ -2,9 +2,10 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\ProductModel;
+use app\models\Product;
 
 class ProductController extends Controller
 {
@@ -14,19 +15,16 @@ class ProductController extends Controller
     }
     public function createProduct(Request $request)
     {
-        $productModel = new ProductModel();
+        $productModel = new Product();
         if($request->isPost()){
 
             $productModel->loadData($request->getBody());
 
             if($productModel->validate() && $productModel->addProduct()) {
-                return 'Success';
+                return Application::$app->response->redirect('/products');
 
             }
-            /*echo '<pre>';
-            var_dump($productModel->errors);
-            echo '</pre>';
-            exit;*/
+
 
             return $this->render('createProduct', [
                 'model' => $productModel

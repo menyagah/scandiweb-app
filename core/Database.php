@@ -47,6 +47,7 @@ class Database
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS migrations (
             id INT AUTO_INCREMENT PRIMARY KEY,
             migration VARCHAR(255),
+            migration DECIMAL(10, 2),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             ) ENGINE=INNODB");
 
@@ -63,10 +64,13 @@ class Database
     {
 
         $str = implode(",",array_map(fn($m) => "('$m')", $migrations));
-        $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES 
-                                       $str
-                                       ");
+        $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES $str");
         $statement->execute();
+    }
+
+    public function prepare($sql)
+    {
+        return $this->pdo->prepare($sql);
     }
 
     protected function log($message)

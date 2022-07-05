@@ -5,13 +5,15 @@ const weight = document.getElementById("weight");
 const dimensions = document.getElementById("dimensions");
 
 
+myForms.innerHTML = '';
 formSelect.oninput = () => {
+
     myForms.className = `f-${formSelect.value}`
     if(myForms.className === `f-size` ){
         weight.remove();
         dimensions.remove();
-        myForms.style.display = "block"
-        myForms.appendChild(size)
+        myForms.style.display = "block";
+        myForms.appendChild(size);
     }else if(myForms.className === `f-weight`){
         size.remove();
         dimensions.remove();
@@ -24,6 +26,13 @@ formSelect.oninput = () => {
         myForms.appendChild(dimensions);
     }
 }
+
+
+
+
+
+
+
 
 
 

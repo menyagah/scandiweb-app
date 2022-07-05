@@ -2,26 +2,30 @@
 
 namespace app\models;
 
+use app\core\DbModel;
 use app\core\Model;
 use app\core\Request;
 
 
 
-class ProductModel extends DbModel
+class Product extends DbModel
 {
 
-    public string $sku = '';
+   public string $sku = '';
     public string $name = '';
-    public string $price = '';
-    public ?string $size = '';
-    public ?string $weight = '';
-    public ?string $height = '';
-    public ?string $width = '';
-    public ?string $length = '';
+    public ?string $price = null;
+    public ?string $size = null;
+    public ?string $weight = null;
+    public ?string $height = null;
+    public ?string $width = null;
+    public ?string $length = null;
 
-
+    public function tableName() :string
+    {
+        return 'products';
+    }
     public function addProduct(){
-        echo 'data added';
+        return $this->save();
     }
 
     public function rules(): array
@@ -30,21 +34,21 @@ class ProductModel extends DbModel
         $appData = new Request();
         if(in_array("size",$appData->getBody())){
             return [
-                'sku' => [self::RULE_REQUIRED],
+                'sku' => [self::RULE_REQUIRED, [self::RULE_UNIQUE, 'class'=>self::class]],
                 'name' => [self::RULE_REQUIRED],
                 'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
                 'size' => [self::RULE_REQUIRED,  self::RULE_NUMERIC]
             ];
         } elseif (in_array("weight", $appData->getBody())){
             return [
-                'sku' => [self::RULE_REQUIRED],
+                'sku' => [self::RULE_REQUIRED,[self::RULE_UNIQUE, 'class'=>self::class]],
                 'name' => [self::RULE_REQUIRED],
                 'price' => [self::RULE_REQUIRED , self::RULE_NUMERIC],
                 'weight' => [self::RULE_REQUIRED, self::RULE_NUMERIC]
             ];
         }elseif (in_array("height" && "width" && "length",$appData->getBody())){
             return [
-                'sku' => [self::RULE_REQUIRED],
+                'sku' => [self::RULE_REQUIRED, [self::RULE_UNIQUE, 'class'=>self::class]],
                 'name' => [self::RULE_REQUIRED],
                 'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
                 'height' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
@@ -53,7 +57,7 @@ class ProductModel extends DbModel
             ];
         }else{
             return  [
-                'sku' => [self::RULE_REQUIRED],
+                'sku' => [self::RULE_REQUIRED, [self::RULE_UNIQUE, 'class'=> self::class]],
                 'name' => [self::RULE_REQUIRED],
                 'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
                 'size' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
@@ -64,6 +68,11 @@ class ProductModel extends DbModel
             ];
         }
 
+    }
+
+    public function attributes(): array
+    {
+        return ['sku','name','price','size','weight','height','width','length',];
     }
 
 }

@@ -32,7 +32,7 @@ $form = Form::begin('', "post") ?>
 
     <div class="mb-3 ">
         <select class="form-select" name="s" aria-label="Default select example " id="form-selector">
-            <option  selected disabled>Type switcher</option>
+            <option   selected disabled>Type switcher</option>
             <option  value="size">DVD</option>
             <option value="weight">Book</option>
             <option value="dimensions">Furniture</option>
