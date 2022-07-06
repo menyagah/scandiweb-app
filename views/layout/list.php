@@ -21,7 +21,7 @@
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <button><a class="nav-link" href="/products/createProduct">Add</a></button>
+                <button><a class="nav-link" href="/add-product">Add</a></button>
             </li>
             <li class="nav-item px-2">
                 <button><a class="nav-link" href="/products">Delete</a></button>
