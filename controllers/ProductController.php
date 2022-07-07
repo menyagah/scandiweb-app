@@ -9,10 +9,15 @@ use app\models\Product;
 
 class ProductController extends Controller
 {
-    public function addProduct()
+    public function product()
     {
-        return $this->render('/products');
+        $productModel = new Product();
+        $products = $productModel->getData();
+        return $this->render('/productList', [
+            'data'=> $products
+        ]);
     }
+
     public function createProduct(Request $request)
     {
         $productModel = new Product();

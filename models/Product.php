@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\DbModel;
 use app\core\Model;
 use app\core\Request;
@@ -26,6 +27,16 @@ class Product extends DbModel
     }
     public function addProduct(){
         return $this->save();
+    }
+    public static function getData(){
+        $db = \app\core\Application::$app->db;
+
+        $statement = Application::$app->db->prepare("SELECT * FROM products");
+
+        $statement ->execute();
+        $results = $statement->fetchAll();
+        $statement->closeCursor();
+        return $results;
     }
 
     public function rules(): array
