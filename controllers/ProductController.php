@@ -14,22 +14,19 @@ class ProductController extends Controller
         $productModel = new Product();
         $products = $productModel->getData();
         return $this->render('/productList', [
-            'data'=> $products
+            'data' => $products
         ]);
     }
 
     public function createProduct(Request $request)
     {
         $productModel = new Product();
-        if($request->isPost()){
-
+        if ($request->isPost()) {
             $productModel->loadData($request->getBody());
 
-            if($productModel->validate() && $productModel->addProduct()) {
+            if ($productModel->validate() && $productModel->addProduct()) {
                 return Application::$app->response->redirect('/products');
-
             }
-
 
             return $this->render('createProduct', [
                 'model' => $productModel
