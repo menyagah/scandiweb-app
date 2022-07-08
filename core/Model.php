@@ -7,13 +7,13 @@ abstract class Model
     public const RULE_REQUIRED = 'required';
     public const RULE_NUMERIC = 'numeric';
     public const RULE_UNIQUE = 'unique';
+    public const RULE_ERROR = 'error';
     public array $errors = [];
 
     public function loadData($data)
     {
         foreach ($data as $key => $value) {
             if (property_exists($this, $key)) {
-                /*$data['sku'] &&  $data['name'] ? $this->{$key} = strval($value) : $this->{$key} = intval($value);*/
                 $this->{$key} = $value;
             }
         }
@@ -49,6 +49,23 @@ abstract class Model
                         $this->addError($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
                     }
                 }
+                $appData = new Request();
+                $data = $appData->getBody();
+                if($ruleName === self::RULE_ERROR && in_array( $data['size'] && $data['weight']  , $data)){
+                    $this->addError($attribute, self::RULE_ERROR);
+                }elseif ($ruleName === self::RULE_ERROR && in_array( $data['size'] && $data['height']  , $data)){
+                    $this->addError($attribute, self::RULE_ERROR);
+                }elseif ($ruleName === self::RULE_ERROR && in_array( $data['weight'] && $data['height']  , $data)){
+                    $this->addError($attribute, self::RULE_ERROR);
+                }elseif ($ruleName === self::RULE_ERROR && in_array( $data['size'] && $data['width']  , $data)){
+                    $this->addError($attribute, self::RULE_ERROR);
+                }elseif ($ruleName === self::RULE_ERROR && in_array( $data['size'] && $data['length']  , $data)){
+                    $this->addError($attribute, self::RULE_ERROR);
+                }elseif ($ruleName === self::RULE_ERROR && in_array( $data['weight'] && $data['width']  , $data)){
+                    $this->addError($attribute, self::RULE_ERROR);
+                }elseif ($ruleName === self::RULE_ERROR && in_array( $data['weight'] && $data['length']  , $data)){
+                    $this->addError($attribute, self::RULE_ERROR);
+                }
             }
         }
         return empty($this->errors);
@@ -70,7 +87,8 @@ abstract class Model
         return [
             self::RULE_REQUIRED => 'This field is required',
             self::RULE_NUMERIC => 'This field needs to be a number greater than 0',
-            self::RULE_UNIQUE => 'Record with this {field} already exists'
+            self::RULE_UNIQUE => 'Record with this {field} already exists',
+            self::RULE_ERROR=> 'You can only select one option from type switcher i.e. [size] ,[weight] or [height, width and length]'
 
         ];
     }

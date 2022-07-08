@@ -21,8 +21,6 @@ $app = new Application(dirname(__DIR__), $config);
 
 
 $app->router->get('/products', [new ProductController(), 'product']);
-$app->router->post('/products', [new ProductController(), 'product']);
-$app->router->get('/add-product', [new ProductController(), 'createProduct']);
 $app->router->post('/add-product', [new ProductController(), 'createProduct']);
 
 $app->run();

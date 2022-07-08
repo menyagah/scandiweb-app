@@ -31,7 +31,7 @@ $form = Form::begin('', "post") ?>
     echo $form->field($model, 'price') ?>
 
     <div class="mb-3 ">
-        <select class="form-select" name="s" aria-label="Default select example " id="form-selector">
+        <select class="form-select" name="typeSwitcher" aria-label="Default select example " id="form-selector">
             <option   selected disabled>Type switcher</option>
             <option  value="size">DVD</option>
             <option value="weight">Book</option>

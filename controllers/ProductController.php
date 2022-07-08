@@ -13,9 +13,24 @@ class ProductController extends Controller
     {
         $productModel = new Product();
         $products = $productModel->getData();
-        return $this->render('/productList', [
-            'data' => $products
-        ]);
+        $dataApi= [];
+        foreach ($products as $product){
+                $new = array('sku'=>$product['sku'],
+                'name'=>$product['name'],
+                'price'=>$product['price'],
+                'size'=>$product['size'],
+                'weight'=>$product['weight'],
+                'height'=>$product['height'],
+                'width'=> $product['width'],
+                'length'=>$product['length']) ;
+
+                array_push($dataApi, $new);
+
+
+        }
+
+        return json_encode($dataApi);
+
     }
 
     public function createProduct(Request $request)
@@ -28,13 +43,9 @@ class ProductController extends Controller
                 return Application::$app->response->redirect('/products');
             }
 
-            return $this->render('createProduct', [
-                'model' => $productModel
-            ]);
+            return  json_encode($productModel);
+
         }
-        $this->setLayout('main');
-        return $this->render('createProduct', [
-            'model' => $productModel
-        ]);
+        return  json_encode($productModel);
     }
 }

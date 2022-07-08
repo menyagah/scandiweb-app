@@ -9,7 +9,7 @@ class m0001_initial {
                 name VARCHAR(255) NOT NULL,
                 price DECIMAL(10,2) NOT NULL,
                  size DECIMAL(10,2)  NULL ,
-                 Weight DECIMAL(10,2) NULL ,
+                 weight DECIMAL(10,2) NULL ,
                  height DECIMAL(10,2)  NULL ,
                  width DECIMAL(10,2)  NULL ,
                  length DECIMAL(10,2)  NULL ,

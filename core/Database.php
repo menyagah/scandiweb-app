@@ -49,7 +49,7 @@ class Database
             "CREATE TABLE IF NOT EXISTS migrations (
             id INT AUTO_INCREMENT PRIMARY KEY,
             migration VARCHAR(255),
-            migration DECIMAL(10, 2),
+            migrations  DECIMAL(10, 2),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             ) ENGINE=INNODB"
         );
