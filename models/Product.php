@@ -20,7 +20,7 @@ class Product extends DbModel
     public ?string $width = null;
     public ?string $length = null;
 
-    public static function getData()
+    public static function getProducts()
     {
         $db = Application::$app->db;
 

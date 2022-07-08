@@ -3,16 +3,15 @@
 namespace app\controllers;
 
 use app\core\Application;
-use app\core\Controller;
 use app\core\Request;
 use app\models\Product;
 
-class ProductController extends Controller
+class ProductController
 {
     public function product()
     {
         $productModel = new Product();
-        $products = $productModel->getData();
+        $products = $productModel->getProducts();
         $dataApi= [];
         foreach ($products as $product){
                 $new = array('sku'=>$product['sku'],
