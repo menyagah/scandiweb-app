@@ -36,15 +36,14 @@ class ProductController
     {
         $productModel = new Product();
         if ($request->isPost()) {
+
             $productModel->loadData($request->getBody());
 
             if ($productModel->validate() && $productModel->addProduct()) {
                 return Application::$app->response->redirect('/products');
             }
-
-            return  json_encode($productModel);
-
+            return  var_dump($productModel);
         }
-        return  json_encode($productModel);
+        return   var_dump($productModel);
     }
 }
