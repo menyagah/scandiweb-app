@@ -45,40 +45,40 @@ class Product extends DbModel
     public function rules(): array
     {
         $appData = new Request();
-        var_dump($appData->getBody());
+        $appData->getBody();
         if (in_array($appData->getBody()["size"], $appData->getBody())) {
             return [
                 'sku' => [self::RULE_REQUIRED, [self::RULE_UNIQUE, 'class' => self::class]],
                 'name' => [self::RULE_REQUIRED],
                 'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
-                'size' => [self::RULE_REQUIRED, self::RULE_NUMERIC, self::RULE_ERROR]
+                'size' => [self::RULE_REQUIRED,  self::RULE_ERROR]
             ];
         } elseif (in_array($appData->getBody()["weight"], $appData->getBody())) {
             return [
                 'sku' => [self::RULE_REQUIRED, [self::RULE_UNIQUE, 'class' => self::class]],
                 'name' => [self::RULE_REQUIRED],
                 'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
-                'weight' => [self::RULE_REQUIRED, self::RULE_NUMERIC, self::RULE_ERROR]
+                'weight' => [self::RULE_REQUIRED, self::RULE_ERROR]
             ];
         } elseif (in_array($appData->getBody()["height"] && $appData->getBody()["width"] && $appData->getBody()["length"], $appData->getBody())) {
             return [
                 'sku' => [self::RULE_REQUIRED, [self::RULE_UNIQUE, 'class' => self::class]],
                 'name' => [self::RULE_REQUIRED],
                 'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
-                'height' => [self::RULE_REQUIRED, self::RULE_NUMERIC, self::RULE_ERROR],
-                'width' => [self::RULE_REQUIRED, self::RULE_NUMERIC, self::RULE_ERROR],
-                'length' => [self::RULE_REQUIRED, self::RULE_NUMERIC, self::RULE_ERROR]
+                'height' => [self::RULE_REQUIRED, self::RULE_ERROR],
+                'width' => [self::RULE_REQUIRED,  self::RULE_ERROR],
+                'length' => [self::RULE_REQUIRED,  self::RULE_ERROR]
             ];
         } else {
             return [
                 'sku' => [self::RULE_REQUIRED, [self::RULE_UNIQUE, 'class' => self::class]],
                 'name' => [self::RULE_REQUIRED],
                 'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
-                'size' => [self::RULE_REQUIRED, self::RULE_NUMERIC, self::RULE_ERROR],
-                'weight' => [self::RULE_REQUIRED, self::RULE_NUMERIC, self::RULE_ERROR],
-                'height' => [self::RULE_REQUIRED, self::RULE_NUMERIC, self::RULE_ERROR],
-                'width' => [self::RULE_REQUIRED, self::RULE_NUMERIC, self::RULE_ERROR],
-                'length' => [self::RULE_REQUIRED, self::RULE_NUMERIC, self::RULE_ERROR]
+                'size' => [self::RULE_REQUIRED,  self::RULE_ERROR],
+                'weight' => [self::RULE_REQUIRED,  self::RULE_ERROR],
+                'height' => [self::RULE_REQUIRED,  self::RULE_ERROR],
+                'width' => [self::RULE_REQUIRED,  self::RULE_ERROR],
+                'length' => [self::RULE_REQUIRED,  self::RULE_ERROR]
             ];
         }
 
@@ -88,7 +88,7 @@ class Product extends DbModel
 
     public function attributes(): array
     {
-        return ['sku', 'name', 'price', 'size', 'weight', 'height', 'width', 'length',];
+        return ['sku', 'name', 'price', 'size', 'weight', 'height', 'width', 'length'];
     }
 
 }

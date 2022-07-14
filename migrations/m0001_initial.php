@@ -8,11 +8,11 @@ class m0001_initial {
                 sku VARCHAR(255) NOT NULL,
                 name VARCHAR(255) NOT NULL,
                 price DECIMAL(10,2) NOT NULL,
-                 size DECIMAL(10,2)  NULL ,
-                 weight DECIMAL(10,2) NULL ,
-                 height DECIMAL(10,2)  NULL ,
-                 width DECIMAL(10,2)  NULL ,
-                 length DECIMAL(10,2)  NULL ,
+                 size VARCHAR(255)  NULL ,
+                 weight VARCHAR(255) NULL ,
+                 height VARCHAR(255)  NULL ,
+                 width  VARCHAR(255) NULL ,
+                 length VARCHAR(255)  NULL ,
                  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=INNODB;";
         $db->pdo->exec($SQL);

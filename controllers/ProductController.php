@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
+use app\core\Response;
 use app\models\Product;
 
 class ProductController
@@ -41,32 +42,10 @@ class ProductController
 
             if ($productModel->validate() && $productModel->addProduct()) {
                 return Application::$app->response->redirect('/products');
+            }else{
+                return json_encode($productModel);
             }
-            $errorsApi= [];
-            foreach ($productModel as $error){
-                $new = array( $error) ;
-
-                array_push($errorsApi, $new);
-
-
-            }
-            $errorsData = [];
-            foreach ($errorsApi as $error){
-                $new = array( 'sku'=>$errorsApi[0][0]["sku"],
-                    'name'=>$errorsApi[0][0]['name'],
-                    'price'=>$errorsApi[0][0]['price'],
-                    'size'=>$errorsApi[0][0]['size'],
-                    'weight'=>$errorsApi[0][0]['weight'],
-                    'height'=>$errorsApi[0][0]['height'],
-                    'width'=> $errorsApi[0][0]['width'],
-                    'length'=>$errorsApi[0][0]['length']) ;
-
-                array_push($errorsData, $new);
-
-
-            }
-            return json_encode($errorsData[0]);
         }
-        return   $productModel;
+        return   json_encode($productModel);
     }
 }

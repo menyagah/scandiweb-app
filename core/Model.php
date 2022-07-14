@@ -29,13 +29,13 @@ abstract class Model
                     $ruleName = $rule[0];
                 }
                 if ($ruleName === self::RULE_REQUIRED && !$value) {
-                    $this->addError($attribute, self::RULE_REQUIRED);
+                    $this->addError($attribute, self::RULE_REQUIRED, ['field' => $attribute]);
                 }
                 $filter_options = array(
                     'options' => array('min_range' => 1)
                 );
                 if ($ruleName === self::RULE_NUMERIC && !filter_var($value, FILTER_VALIDATE_INT, $filter_options)) {
-                    $this->addError($attribute, self::RULE_NUMERIC);
+                    $this->addError($attribute, self::RULE_NUMERIC, ['field' => $attribute]);
                 }
                 if ($ruleName === self::RULE_UNIQUE) {
                     $className = $rule['class'];
@@ -85,10 +85,10 @@ abstract class Model
     public function errorMessages()
     {
         return [
-            self::RULE_REQUIRED => 'This field is required',
-            self::RULE_NUMERIC => 'This field needs to be a number greater than 0',
+            self::RULE_REQUIRED => '{field} is required',
+            self::RULE_NUMERIC => '{field} needs to be a number greater than 0',
             self::RULE_UNIQUE => 'Record with this {field} already exists',
-            self::RULE_ERROR=> 'You can only select one option from type switcher i.e. [size] ,[weight] or [height, width and length]'
+            self::RULE_ERROR=> 'Please select one option from type switcher'
 
         ];
     }
@@ -100,7 +100,8 @@ abstract class Model
 
     public function getFirstError($attribute)
     {
-        return $this->errors[$attribute][0] ?? false;
+        $errors = $this->errors[$attribute][0] ?? false;
+        return $errors[0] ?? '';
     }
 }
 
