@@ -30,7 +30,7 @@ $config = [
 
 $app = new Application(dirname(__DIR__), $config);
 
-
+$app->router->delete('/products/{id}', [new ProductController(), 'deleteProduct']);
 $app->router->get('/products', [new ProductController(), 'product']);
 $app->router->post('/add-product', [new ProductController(), 'createProduct']);
 
