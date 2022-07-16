@@ -8,6 +8,7 @@ abstract class Model
     public const RULE_NUMERIC = 'numeric';
     public const RULE_UNIQUE = 'unique';
     public const RULE_ERROR = 'error';
+    public const RULE_SWITCHER = 'error';
     public array $errors = [];
 
     public function loadData($data)
@@ -30,6 +31,9 @@ abstract class Model
                 }
                 if ($ruleName === self::RULE_REQUIRED && !$value) {
                     $this->addError($attribute, self::RULE_REQUIRED, ['field' => $attribute]);
+                }
+                if ($ruleName === self::RULE_SWITCHER && !$value) {
+                    $this->addError($attribute, self::RULE_SWITCHER, ['field' => $attribute]);
                 }
                 $filter_options = array(
                     'options' => array('min_range' => 1)
@@ -88,7 +92,8 @@ abstract class Model
             self::RULE_REQUIRED => '{field} is required',
             self::RULE_NUMERIC => '{field} needs to be a number greater than 0',
             self::RULE_UNIQUE => 'Record with this {field} already exists',
-            self::RULE_ERROR=> 'Please select one option from type switcher'
+            self::RULE_ERROR=> 'Please select one option from type switcher',
+            self::RULE_SWITCHER => 'Please select one option from type switcher',
 
         ];
     }
