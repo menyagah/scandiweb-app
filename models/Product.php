@@ -50,7 +50,7 @@ class Product extends DbModel
                 'sku' => [self::RULE_REQUIRED, [self::RULE_UNIQUE, 'class' => self::class]],
                 'name' => [self::RULE_REQUIRED],
                 'price' => [self::RULE_REQUIRED, self::RULE_NUMERIC],
-                'size' => [self::RULE_REQUIRED,  self::RULE_ERROR]
+                'size' => [self::RULE_REQUIRED, self::RULE_SWITCHER,  self::RULE_ERROR]
             ];
         } elseif (in_array($appData->getBody()["weight"], $appData->getBody())) {
             return [
