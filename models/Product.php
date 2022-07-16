@@ -20,16 +20,9 @@ class Product extends DbModel
     public ?string $width = null;
     public ?string $length = null;
 
-    public static function getProducts()
+    public  function products()
     {
-        $db = Application::$app->db;
-
-        $statement = Application::$app->db->prepare("SELECT * FROM products");
-
-        $statement->execute();
-        $results = $statement->fetchAll();
-        $statement->closeCursor();
-        return $results;
+        return $this->getProducts();
     }
 
     public function tableName(): string
@@ -40,6 +33,12 @@ class Product extends DbModel
     public function addProduct()
     {
         return $this->save();
+    }
+
+     public function delete($id)
+    {
+        
+        return $this->deleteProduct($id);
     }
 
     public function rules(): array
