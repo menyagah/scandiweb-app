@@ -18,7 +18,26 @@ abstract class DbModel extends Model
         }
         $statement->execute();
         return true;
+    }
 
+    public function deleteProduct($id)
+    {
+        $statement = Application::$app->db->prepare("DELETE FROM products WHERE ID = :id LIMIT 1");
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+        $statement->closeCursor();
+        
+    }
+
+    public function getProducts()
+    {
+        
+        $statement = Application::$app->db->prepare("SELECT * FROM products");
+
+        $statement->execute();
+        $results = $statement->fetchAll();
+        $statement->closeCursor();
+        return $results;
     }
 
     public function prepare($sql)

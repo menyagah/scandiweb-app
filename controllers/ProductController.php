@@ -12,7 +12,7 @@ class ProductController
     public function product()
     {
         $productModel = new Product();
-        $products = $productModel->getProducts();
+        $products = $productModel->products();
         $dataApi= [];
         foreach ($products as $product){
                 $new = array('sku'=>$product['sku'],
@@ -31,6 +31,16 @@ class ProductController
 
         return json_encode($dataApi);
 
+    }
+
+    public function deleteProduct($id)
+    {
+        $request = new Request;
+        $str_path = explode ("/", $request->getUrl());
+        $id = $str_path[2];
+        $productModel = new Product();
+        $products = $productModel->delete($id);
+        return var_dump($request->getUrl());
     }
 
     public function createProduct(Request $request)
