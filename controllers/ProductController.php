@@ -13,52 +13,47 @@ class ProductController
     {
         $productModel = new Product();
         $products = $productModel->products();
-        $dataApi= [];
-        foreach ($products as $product){
-                $new = array(
-                'id'=>$product['id'],
-                'sku'=>$product['sku'],
-                'name'=>$product['name'],
-                'price'=>$product['price'],
-                'size'=>$product['size'],
-                'weight'=>$product['weight'],
-                'height'=>$product['height'],
-                'width'=> $product['width'],
-                'length'=>$product['length']) ;
+        $dataApi = [];
+        foreach ($products as $product) {
+            $new = array(
+                'id' => $product['id'],
+                'sku' => $product['sku'],
+                'name' => $product['name'],
+                'price' => $product['price'],
+                'size' => $product['size'],
+                'weight' => $product['weight'],
+                'height' => $product['height'],
+                'width' => $product['width'],
+                'length' => $product['length']
+            );
 
-                array_push($dataApi, $new);
-
-
+            array_push($dataApi, $new);
         }
-
         return json_encode($dataApi);
-
     }
 
     public function deleteProduct(Request $request)
     {
         $request = new Request;
-         $data = [];
-        foreach($request->getBody() as $key=>$value){
+        $data = [];
+        foreach ($request->getBody() as $key => $value) {
             $new = array($key = $value);
             array_push($data, $new);
         }
-        $id = implode (",", $data[0][0]);
+        $id = implode(",", $data[0][0]);
         $productModel = new Product();
         $products = $productModel->delete($id);
-        var_dump($id);
-       
+        return $products;
     }
 
     public function createProduct(Request $request)
     {
         $productModel = new Product();
         if ($request->isPost()) {
-            
             $productModel->loadData($request->getBody());
             if ($productModel->validate() && $productModel->addProduct()) {
                 return Application::$app->response->redirect('/products');
-            }else{
+            } else {
                 return json_encode($productModel);
             }
         }
