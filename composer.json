@@ -1,11 +1,11 @@
 {
-    "name": "nyagah/php-mvc",
-    "autoload": {
-        "psr-4": {
-            "app\\": "./"
-        }
-    },
-    "require": {
-        "vlucas/phpdotenv": "^5.4"
+  "name": "nyagah/php-mvc",
+  "autoload": {
+    "psr-4": {
+      "app\\": "./"
     }
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.4"
+  }
 }

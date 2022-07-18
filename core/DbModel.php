@@ -22,8 +22,11 @@ abstract class DbModel extends Model
 
     public function deleteProduct($id)
     {
-        $statement = Application::$app->db->prepare("DELETE FROM products WHERE ID = :id LIMIT 1");
-        $statement->bindValue(':id', $id);
+        $statement = Application::$app->db->prepare("DELETE FROM products WHERE id IN ($id)");
+        foreach ($id as $key){
+            $statement->bindValue(':id', $key);
+        }
+        
         $statement->execute();
         $statement->closeCursor();
         
