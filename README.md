@@ -62,8 +62,6 @@
 
 ## About The Project
 
-![image](https://user-images.githubusercontent.com/24241962/103855134-0b198a00-50c3-11eb-9be4-ea26a668b32d.png)
-
 This is a php api backend that stores data, retrieves data and deletes it upon user requests. Data is store in a mysql database.
 
 ### Built With
