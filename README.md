@@ -62,7 +62,7 @@
 
 ## About The Project
 
-This is a php api backend that stores data, retrieves data and deletes it upon user requests. Data is store in a mysql database.
+This is a php api backend that stores data, retrieves data and deletes it upon user requests. Data is stored in a mysql database.
 
 ### Built With
 
@@ -88,7 +88,7 @@ To get a local copy up and running follow these simple steps.
 1.  Clone the repo
 
     ```sh
-    git@github.com:menyagah/scandiweb-products.git
+    git@github.com:menyagah/scandiweb-app.git
     ```
 
 2.  Have all the prerequisites installed
