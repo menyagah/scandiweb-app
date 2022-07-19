@@ -28,10 +28,10 @@
     <img src="https://user-images.githubusercontent.com/24241962/103855601-14efbd00-50c4-11eb-862c-05691381dccc.png" alt="Logo" width="170" height="170">
   </a>
 
-  <h3 align="center">Telegram Bot</h3>
+  <h3 align="center">Scandiweb Test</h3>
 
   <p align="center">
-    A telegram bot that sells phones to users.
+    A php api that adds, lists and deletes produtcs.
     <br />
     <a href="https://github.com/menyagah/Telegram_Bot/tree/feature"><strong>Explore the docs »</strong></a>
     <br />
